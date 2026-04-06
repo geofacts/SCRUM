@@ -51,13 +51,18 @@ public class Dashboard extends Application
         stage.setScene(scene);
         stage.show();
         
-        paycheckButton.setOnAction(e -> {
-            SecondWindow window = new SecondWindow();
-            window.show();
-    });
-        creditButton.setOnAction(e -> {
-            CreditsWindow window = new CreditsWindow();
-            window.show();
-    });
-}
+        paycheckButton.setOnAction(e -> 
+            {
+                PaycheckTracker tracker = new PaycheckTracker();
+                tracker.openPaycheckTracker();
+            }
+        );
+        
+        creditButton.setOnAction(e -> 
+            {
+                CreditsWindow window = new CreditsWindow();
+                window.show();
+            }
+        );
+    }
 }
