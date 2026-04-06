@@ -50,5 +50,10 @@ public class Dashboard extends Application
         stage.setTitle("Blue Finance - Dashboard");
         stage.setScene(scene);
         stage.show();
-    }
+        
+        paycheckButton.setOnAction(e -> {
+            SecondWindow window = new SecondWindow();
+            window.show();
+    });
+}
 }
