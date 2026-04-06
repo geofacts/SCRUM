@@ -55,5 +55,9 @@ public class Dashboard extends Application
             SecondWindow window = new SecondWindow();
             window.show();
     });
+        creditButton.setOnAction(e -> {
+            CreditsWindow window = new CreditsWindow();
+            window.show();
+    });
 }
 }
