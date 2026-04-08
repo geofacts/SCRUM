@@ -35,13 +35,17 @@ public class Dashboard extends Application
     private final ObservableList<PaycheckEntry> entryList = FXCollections.observableArrayList();
     
     private final TableView<PaycheckEntry> table = new TableView<>();
+
+    private int balance;
     
     @Override
     public void start(Stage stage)
     {   
+        balance = 0;
+        
         Label titleLabel = new Label("Blue Finance");
         Label locationLabel = new Label("Dashboard");
-        Label balanceLabel = new Label("Balance: $Infinity");
+        Label balanceLabel = new Label("Balance: $" + balance);
         
         titleLabel.setStyle("-fx-font-size: 22px; -fx-text-fill: blue;");
         locationLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: black;");
@@ -70,6 +74,13 @@ public class Dashboard extends Application
         stage.setTitle("Blue Finance - Dashboard");
         stage.setScene(scene);
         stage.show();
+
+        updateBalanceButton.setOnAction(e -> 
+            {
+                BalanceUpdater updater = new BalanceUpdater();
+                updater.openBalanceUpdater();
+            }
+        );
         
         creditButton.setOnAction(e -> 
             {
