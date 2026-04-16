@@ -36,13 +36,15 @@ public class Dashboard extends Application
     
     private final TableView<PaycheckEntry> table = new TableView<>();
 
-    private int balance;
+    private static double balance;
+    
+    private static Label balanceLabel;
     
     @Override
     public void start(Stage stage)
     {   
         balance = 0;
-        
+
         Label titleLabel = new Label("Blue Finance");
         Label locationLabel = new Label("Dashboard");
         Label balanceLabel = new Label("Balance: $" + balance);
@@ -234,5 +236,10 @@ public class Dashboard extends Application
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    protected static void updateBalance(double newBalance)
+    {
+        // balanceLabel.setText("Balance: $" + newBalance);
     }
 }
