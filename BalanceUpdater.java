@@ -12,8 +12,6 @@ import javafx.stage.Modality;
 
 public class BalanceUpdater
 {
-    protected int newBalance;
-    
     protected boolean addMode;
     protected boolean removeMode;
     protected boolean setMode;
@@ -125,22 +123,27 @@ public class BalanceUpdater
         
         saveButton.setOnAction(e->
             {
-                newBalance = Integer.parseInt(amountField.getText());
-                if (addMode || removeMode || setMode)
+                try
                 {
-                    saveButton.setText("Saved!");
+                    if (addMode || removeMode || setMode)
+                    {
+                        Dashboard.updateBalance(Double.parseDouble(amountField.getText()));
+                        dialog.close();
+                    }
+                    else
+                    {
+                        saveButton.setText("Select a mode");
+                    }
                 }
-                else
+                catch(Exception x)
                 {
-                    saveButton.setText("Select a mode");
+                    saveButton.setText("Enter a valid number" + x);
                 }
             }
         );
         
         cancelButton.setOnAction(e->
-            {
-        
-            }
+            dialog.close()
         );
     }   
 }
