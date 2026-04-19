@@ -36,9 +36,9 @@ public class Dashboard extends Application
     
     private final TableView<PaycheckEntry> table = new TableView<>();
 
-    private static double balance;
+    private double balance;
     
-    private static Label balanceLabel;
+    private Label balanceLabel;
     
     @Override
     public void start(Stage stage)
@@ -47,7 +47,7 @@ public class Dashboard extends Application
 
         Label titleLabel = new Label("Blue Finance");
         Label locationLabel = new Label("Dashboard");
-        Label balanceLabel = new Label("Balance: $" + balance);
+        balanceLabel = new Label("Balance: $" + balance);
         
         titleLabel.setStyle("-fx-font-size: 22px; -fx-text-fill: blue;");
         locationLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: black;");
@@ -80,7 +80,7 @@ public class Dashboard extends Application
         updateBalanceButton.setOnAction(e -> 
             {
                 BalanceUpdater updater = new BalanceUpdater();
-                updater.openBalanceUpdater();
+                updater.openBalanceUpdater(this);
             }
         );
         
@@ -238,8 +238,8 @@ public class Dashboard extends Application
         alert.showAndWait();
     }
     
-    protected static void updateBalance(double newBalance)
+    public void updateBalance(double newBalance)
     {
-        // balanceLabel.setText("Balance: $" + newBalance);
+        balanceLabel.setText("Balance: $" + newBalance);
     }
 }
