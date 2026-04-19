@@ -16,7 +16,7 @@ public class BalanceUpdater
     protected boolean removeMode;
     protected boolean setMode;
     
-    public void openBalanceUpdater()
+    public void openBalanceUpdater(Dashboard referer)
     {
         addMode = false;
         removeMode = false;
@@ -61,7 +61,7 @@ public class BalanceUpdater
         dialog.setScene(scene);
         dialog.show();
         
-        addButton.setOnAction(e->
+        addButton.setOnAction(e ->
             {
                 if (removeMode)
                 {
@@ -81,7 +81,7 @@ public class BalanceUpdater
             }
         );
         
-        removeButton.setOnAction(e->
+        removeButton.setOnAction(e ->
             {
                 if (addMode)
                 {
@@ -101,7 +101,7 @@ public class BalanceUpdater
             }
         );
         
-        setButton.setOnAction(e->
+        setButton.setOnAction(e ->
             {
                 if (addMode)
                 {
@@ -121,13 +121,13 @@ public class BalanceUpdater
             }
         );
         
-        saveButton.setOnAction(e->
+        saveButton.setOnAction(e ->
             {
                 try
                 {
                     if (addMode || removeMode || setMode)
-                    {
-                        Dashboard.updateBalance(Double.parseDouble(amountField.getText()));
+                    { 
+                        referer.updateBalance(Double.parseDouble(amountField.getText().trim()));
                         dialog.close();
                     }
                     else
@@ -135,9 +135,9 @@ public class BalanceUpdater
                         saveButton.setText("Select a mode");
                     }
                 }
-                catch(Exception x)
+                catch(Exception err)
                 {
-                    saveButton.setText("Enter a valid number" + x);
+                    saveButton.setText("Please enter a valid number");
                 }
             }
         );
