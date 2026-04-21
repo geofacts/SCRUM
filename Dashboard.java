@@ -53,7 +53,9 @@ public class Dashboard extends Application
         locationLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: black;");
         balanceLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: black;");
         
-        Button updateBalanceButton = new Button("Update Balance");
+        Button updateBalanceButton = new Button("Add Balance");
+        Button updateBalanceButton2 = new Button("Remove Balance");
+        Button updateBalanceButton3 = new Button("Set Balance");
         Button creditButton = new Button("Credits");
         
         GridPane grid = new GridPane();
@@ -68,7 +70,9 @@ public class Dashboard extends Application
         grid.add(balanceLabel, 15, 0, 2, 1);
 
         grid.add(loadPaycheckTracker(), 1, 1, 9, 6);
-        grid.add(updateBalanceButton, 16, 1, 1, 1);
+        grid.add(updateBalanceButton, 15, 1, 1, 2);
+        grid.add(updateBalanceButton2, 15, 2, 1, 2);
+        grid.add(updateBalanceButton3, 15, 3, 1, 2);
         grid.add(creditButton, 16, 8, 1, 1);
         
         Scene scene = new Scene(grid, 800, 450);
@@ -79,7 +83,21 @@ public class Dashboard extends Application
 
         updateBalanceButton.setOnAction(e -> 
             {
-                BalanceUpdater updater = new BalanceUpdater();
+                BalanceUpdater updater = new BalanceUpdater(true, false, false);
+                updater.openBalanceUpdater(this);
+            }
+        );
+        
+        updateBalanceButton2.setOnAction(e -> 
+            {
+                BalanceUpdater updater = new BalanceUpdater(false, true, false);
+                updater.openBalanceUpdater(this);
+            }
+        );
+        
+        updateBalanceButton3.setOnAction(e -> 
+            {
+                BalanceUpdater updater = new BalanceUpdater(false, false, true);
                 updater.openBalanceUpdater(this);
             }
         );
