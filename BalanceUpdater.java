@@ -16,12 +16,15 @@ public class BalanceUpdater
     protected boolean removeMode;
     protected boolean setMode;
     
+    public BalanceUpdater(boolean a, boolean r, boolean s)
+    {
+        addMode = a;
+        removeMode = r;
+        setMode = s;
+    }
+    
     public void openBalanceUpdater(Dashboard referer)
     {
-        addMode = false;
-        removeMode = false;
-        setMode = false;
-        
         Stage dialog = new Stage();
         
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -29,9 +32,9 @@ public class BalanceUpdater
         // TextField idField = new TextField();
         TextField amountField = new TextField();
 
-        Button addButton = new Button("Add this amount (Unselected)");
-        Button removeButton = new Button("Remove this amount (Unselected)");
-        Button setButton = new Button("Set to this amount (Unselected)");
+        // Button addButton = new Button("Add this amount (Unselected)");
+        // Button removeButton = new Button("Remove this amount (Unselected)");
+        // Button setButton = new Button("Set to this amount (Unselected)");
         Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
 
@@ -48,19 +51,19 @@ public class BalanceUpdater
         grid.add(new Label("Amount:"), 0, 1);
         grid.add(amountField, 1, 1);
         
-        grid.add(addButton, 0, 2);
-        grid.add(removeButton, 0, 3);
-        grid.add(setButton, 0, 4);
+        // grid.add(addButton, 0, 2);
+        // grid.add(removeButton, 0, 3);
+        // grid.add(setButton, 0, 4);
         
-        grid.add(saveButton, 0, 5);
-        grid.add(cancelButton, 1, 5);
+        grid.add(saveButton, 0, 3);
+        grid.add(cancelButton, 1, 3);
         
-        Scene scene = new Scene(grid, 400, 250);
+        Scene scene = new Scene(grid, 250, 100);
         
         dialog.setTitle("Balance Updater");
         dialog.setScene(scene);
         dialog.show();
-        
+        /*
         addButton.setOnAction(e ->
             {
                 if (removeMode)
@@ -120,7 +123,7 @@ public class BalanceUpdater
                 setButton.setText("Set to this amount (Selected)");
             }
         );
-        
+        */
         saveButton.setOnAction(e ->
             {
                 try
