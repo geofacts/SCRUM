@@ -3,15 +3,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class CreditsWindow {
-
-    public void show() {
+public class CreditsWindow
+{
+    public void show()
+    {
         Stage stage = new Stage();
 
-        Label label = new Label("From the genius minds of:");
-        Label kaden = new Label("Kaden Butler (the scrum master)");
-        Label nolan = new Label("Nolan Thurman (the product owner)");
-        Label ethan = new Label("Ethan Su (the developer)");
+        Label label = new Label("From The Genius Minds Of:");
+        Label kaden = new Label("The SCRUM Master - Kaden Butler");
+        Label nolan = new Label("The Product Owner - Nolan Thurman");
+        Label ethan = new Label("The Developer - Ethan Su");
 
         VBox root = new VBox(5); // spacing of 5 pixels between labels
         root.getChildren().addAll(label, kaden, nolan, ethan);
