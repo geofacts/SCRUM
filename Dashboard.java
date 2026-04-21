@@ -238,8 +238,20 @@ public class Dashboard extends Application
         alert.showAndWait();
     }
     
-    public void updateBalance(double newBalance)
+    public void updateBalance(double newBalance, boolean addMode, boolean removeMode, boolean setMode)
     {
-        balanceLabel.setText("Balance: $" + newBalance);
+        if (addMode)
+        {
+            balance += newBalance;
+        }
+        if (removeMode)
+        {
+            balance -= newBalance;
+        }
+        if (setMode)
+        {
+            balance = newBalance;
+        }
+        balanceLabel.setText("Balance: $" + balance);
     }
 }
