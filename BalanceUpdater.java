@@ -127,7 +127,7 @@ public class BalanceUpdater
                 {
                     if (addMode || removeMode || setMode)
                     { 
-                        referer.updateBalance(Double.parseDouble(amountField.getText().trim()));
+                        referer.updateBalance(Double.parseDouble(amountField.getText().trim()), addMode, removeMode, setMode);
                         dialog.close();
                     }
                     else
