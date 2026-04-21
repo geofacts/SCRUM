@@ -26,7 +26,7 @@ public class BalanceUpdater
         
         dialog.initModality(Modality.APPLICATION_MODAL);
         
-        TextField idField = new TextField();
+        // TextField idField = new TextField();
         TextField amountField = new TextField();
 
         Button addButton = new Button("Add this amount (Unselected)");
@@ -42,8 +42,8 @@ public class BalanceUpdater
 
         grid.setPadding(new Insets(15));
         
-        grid.add(new Label("ID:"), 0, 0);
-        grid.add(idField, 1, 0);
+        // grid.add(new Label("ID:"), 0, 0);
+        // grid.add(idField, 1, 0);
 
         grid.add(new Label("Amount:"), 0, 1);
         grid.add(amountField, 1, 1);
