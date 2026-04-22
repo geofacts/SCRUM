@@ -40,12 +40,12 @@ public class PaycheckTracker
 
         dialog.setTitle(existingEntry == null ? "Add Entry" : "Edit Entry");
         
-        TextField idField = new TextField();
+        // TextField idField = new TextField();
         TextField amountField = new TextField();
         DatePicker dateField = new DatePicker();
         
         if (existingEntry != null) {
-            idField.setText(existingEntry.getId());
+            // idField.setText(existingEntry.getId());
             amountField.setText(Double.toString(existingEntry.getAmount()));
             dateField.setValue(existingEntry.getDateObtained());
         }
@@ -55,19 +55,21 @@ public class PaycheckTracker
         
         final PaycheckEntry[] result = {null};
 
-        saveButton.setOnAction(
-            e -> { 
-                String inputId = idField.getText().trim();
+        saveButton.setOnAction(e ->
+        { 
+                // String inputId = idField.getText().trim();
                 String inputAmount = amountField.getText().trim();
                 LocalDate inputDate = dateField.getValue();
                 //String verificationCode = verificationField.getText().trim();
                 
                 // make sure the fields are not empty
+                /*
                 if (inputId.isEmpty() || inputAmount.isEmpty() || inputDate == null)
                 {
                     showAlert("Missing Info", "Please fill in ALL fields.");
                     return;
                 }
+                */
                 
                 // try to get the double value. if it doesn't work, remind user to do so
                 double retrievedAmount;
@@ -98,7 +100,7 @@ public class PaycheckTracker
                 try
                 {
                     // String uid = generateRandomId(64);
-                    result[0] = new PaycheckEntry(inputId, retrievedAmount, inputDate);
+                    result[0] = new PaycheckEntry("no", retrievedAmount, inputDate);
                     
                     dialog.close();
                 }
@@ -119,8 +121,8 @@ public class PaycheckTracker
 
         grid.setPadding(new Insets(15));
         
-        grid.add(new Label("ID:"), 0, 0);
-        grid.add(idField, 1, 0);
+        // grid.add(new Label("ID:"), 0, 0);
+        // grid.add(idField, 1, 0);
 
         grid.add(new Label("Amount:"), 0, 1);
         grid.add(amountField, 1, 1);
@@ -131,7 +133,7 @@ public class PaycheckTracker
         grid.add(saveButton, 0, 3);
         grid.add(cancelButton, 1, 3);
         
-        Scene scene = new Scene(grid, 400, 250);
+        Scene scene = new Scene(grid, 275, 160);
         
         dialog.setTitle("Paycheck Tracker");
         dialog.setScene(scene);
