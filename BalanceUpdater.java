@@ -9,6 +9,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import java.time.LocalDate;
 import javafx.stage.Modality;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class BalanceUpdater
 {
@@ -43,7 +46,7 @@ public class BalanceUpdater
         grid.setHgap(10);
         grid.setVgap(10);
 
-        grid.setPadding(new Insets(15));
+        grid.setPadding(new Insets(5));
         
         // grid.add(new Label("ID:"), 0, 0);
         // grid.add(idField, 1, 0);
@@ -58,9 +61,22 @@ public class BalanceUpdater
         grid.add(saveButton, 0, 3);
         grid.add(cancelButton, 1, 3);
         
-        Scene scene = new Scene(grid, 250, 100);
+        Scene scene = new Scene(grid, 290, 100);
         
         dialog.setTitle("Balance Updater");
+        if (addMode)
+        {
+            dialog.setTitle("Add to Balance");
+        }
+        if (removeMode)
+        {
+            dialog.setTitle("Remove from Balance");
+        }
+        if (setMode)
+        {
+            dialog.setTitle("Set new Balance");
+        }
+        
         dialog.setScene(scene);
         dialog.show();
         /*
@@ -140,7 +156,9 @@ public class BalanceUpdater
                 }
                 catch(Exception err)
                 {
-                    saveButton.setText("Please enter a valid number");
+                    saveButton.setText("Save");
+                    Alert alert = new Alert(AlertType.ERROR, "Please double check that you entered the amount correctly.", ButtonType.OK);
+                    alert.showAndWait();
                 }
             }
         );
