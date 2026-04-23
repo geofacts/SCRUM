@@ -2,6 +2,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.Random;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -30,8 +31,12 @@ import java.time.LocalDate;
 
 import javafx.stage.Modality;
 
+import java.util.Base64;
+
 public class PaycheckTracker
-{    
+{   
+    private static Random random = new Random();
+    
     public static PaycheckEntry openPaycheckTracker(PaycheckEntry existingEntry) 
     {
         Stage dialog = new Stage();
@@ -63,13 +68,13 @@ public class PaycheckTracker
                 //String verificationCode = verificationField.getText().trim();
                 
                 // make sure the fields are not empty
-                /*
-                if (inputId.isEmpty() || inputAmount.isEmpty() || inputDate == null)
+                
+                if (inputAmount.isEmpty() || inputDate == null)
                 {
                     showAlert("Missing Info", "Please fill in ALL fields.");
                     return;
                 }
-                */
+                
                 
                 // try to get the double value. if it doesn't work, remind user to do so
                 double retrievedAmount;
@@ -99,14 +104,24 @@ public class PaycheckTracker
                 
                 try
                 {
-                    // String uid = generateRandomId(64);
-                    result[0] = new PaycheckEntry("no", retrievedAmount, inputDate);
+                    String uid = null;
+                    
+                    if (existingEntry != null)
+                    {
+                        uid = existingEntry.getId();
+                    }
+                    else
+                    {
+                        uid = Base64.getEncoder().encodeToString((generateRandomId(16) + "-" + java.time.Instant.now().getEpochSecond()).getBytes());
+                    }
+                    
+                    result[0] = new PaycheckEntry(uid, retrievedAmount, inputDate);
                     
                     dialog.close();
                 }
                 catch (Exception err)
                 {
-                    showAlert("Error", "Sorry, there was an error processing your message: " + err);
+                    showAlert("Error", "Sorry, there was an error processing your entry: " + err);
                 }
             }
         );
@@ -148,6 +163,28 @@ public class PaycheckTracker
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    private static String generateRandomId(int length) throws Exception
+    { 
+        if (length < 1 || length > 1000)
+        {
+            throw new Exception("The method generateRandomId only accepts lengths within the (inclusive) range of 1-1000.");
+        }
+        
+        String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int charsCount = chars.length();
+        String result = "";
+        
+        for (int i = 0; i < length; i++)
+        {
+            int randomIndex = random.nextInt(charsCount);
+            char randomChar = chars.charAt(randomIndex);
+            
+            result = result + randomChar;
+        }
+        
+        return result;
     }
     
     private static void showAlert(String title, String message)
