@@ -9,10 +9,10 @@ public class CreditsWindow
     {
         Stage stage = new Stage();
 
-        Label label = new Label("From The Genius Minds Of:");
-        Label kaden = new Label("The SCRUM Master - Kaden Butler");
-        Label nolan = new Label("The Product Owner - Nolan Thurman");
-        Label ethan = new Label("The Developer - Ethan Su");
+        Label label = new Label("This demo was created by:");
+        Label kaden = new Label("Kaden Butler - SCRUM Master");
+        Label nolan = new Label("Nolan Thurman - Product Owner");
+        Label ethan = new Label("Ethan Su - Developer");
 
         VBox root = new VBox(5); // spacing of 5 pixels between labels
         root.getChildren().addAll(label, kaden, nolan, ethan);
